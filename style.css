@@ -55,12 +55,15 @@ body {
 /*components of container-2*/
 
 .div-container {
-    width: 600px;
-    height: 600px;
+    max-width: 600px;
+    max-height: 600px;
+    height: 90vw;
+    width: 90vw;
     border: 2px solid black;
     background-color: white;
     display: flex;
     flex-flow: column;
+    
 }
 
 .control-area {
@@ -72,11 +75,19 @@ body {
 .control-area-1 {
     display: flex;
     flex-flow: column;
+}
+.control-area-2 {
+    display: flex;
+    flex-flow: column;
+    gap: 4px;
+}
+.control-area-3 {
+    display: flex;
+    flex-flow: column;
     gap: 4px;
 }
 
-
-.control-area-2 {
+.control-area-4 {
   justify-self: flex-end;
 }
 
@@ -87,40 +98,56 @@ body {
     background-color: #4d4d4d;
     width: fit-content;
     padding: 8px;
-    border-radius: 20px;
+    border-radius: 8px;
     align-self: center;
 }
 .color-panel-1 {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
     gap: 8px;
 }
 .color-panel-2 {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
     gap: 8px;
 }
 
 .colordiv {
-    border-radius: 14px;
+    border-radius: 8px;
     height: 50px;
     width: 50px;
 }
 
-.clear-button {
+button {
     margin-top: 4px;
     box-sizing: border;
     font-family: var(--font-family);
     justify-self: flex-end;
+    align-self: center;
     padding: 8px;
     border-radius: 20px;
-    border: 2px solid white;
-    background-color: white;
-    font-size: 1.1rem;
+    background-color: #ffa6ed;
+    font-size: 1rem;
+    width: 150px;
+    height: 40px;
+    border: none;
 }
+
+button:active {
+    transform: scale(1.1);
+    background-color: #ff8ce8;
+}
+
+
 
 .pixel-size-control {
     margin-top: 16px;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+}
+.pixel-size-control > h3 {
+    margin-bottom: 0px;
 }
 .myName {
     align-self: flex-end;
@@ -129,7 +156,19 @@ body {
 .slider {
     width:100%;
     outline:none;
-    background-color: var(--call-to-action);
+    height: 10px;
+    background: linear-gradient(to right, #ff85e7 16%, white 50%);
+    -webkit-appearance: none;
+    border-radius: 25px;
+    margin-bottom: 8px;
+}
+.slider::-webkit-slider-thumb {
+    cursor: pointer;
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 25px;
+    background-color: #ff00cc;
 }
 
 .column {
@@ -169,3 +208,61 @@ body {
     color: var(--clr-5);
 }
 
+
+@media (min-width: 1201px) {
+    button:hover {
+        background-color: #ff8ce8;
+    }
+}
+
+@media only screen and (max-width: 1200px){
+    /*Tablets [601px -> 1200px]*/
+    .container-2 {
+        flex-flow: column;
+        }
+    .control-area-1{
+        flex-flow:column;
+        justify-content: space-around;
+    }
+    .pixel-size-control {
+        margin-top: 0px;
+    }
+    .color-panel {
+        display: block;
+    }
+    .color-panel-1 {
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 8px;
+    }
+    .color-panel-2 {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .control-area-4 {
+        text-align: center;
+        margin-top: 16px;
+    }
+    
+}
+@media only screen and (max-width: 600px){
+	/*Big smartphones [426px -> 600px]*/
+}
+@media only screen and (max-width: 425px){
+	/*Small smartphones [325px -> 425px]*/
+    .pixel-size-control {
+        margin-top: 0px;
+    }
+    .title {
+        font-size: 2rem;
+    }
+    
+}
+
+@media only screen and (max-width: 290px){
+	/*Small smartphones [325px -> 425px]*/
+    .title {
+        font-size: 1.5rem;
+    }
+    
+}

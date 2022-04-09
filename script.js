@@ -49,7 +49,14 @@ function getContainerSize (){
     console.log(divSize);
     return divSize;
 }
-
+function showRangeValue() {
+        document.querySelector('.slider').oninput = function () {
+        gridValue = this.value;
+        this.style.background = `linear-gradient(to right, #ff7ee5 ${gridValue}%, white 50%`;
+        const textValue = document.querySelector('.count');
+        textValue.textContent = gridValue + " x " + gridValue;
+    }
+}
 
 function calculateCellSize(x, num) {
     colHeight = num / x;
@@ -58,11 +65,11 @@ function calculateCellSize(x, num) {
     rowWidth = num / x;
 }
 
-let gridValue = 100;
+let gridValue;
 let colHeight = 0;
 let colWidth = 0;
 let rowHeight = 0;
 let rowWidth = 0;
 let containerSize = getContainerSize();
 generateColors();
-generateCanvas(gridValue, containerSize);
+showRangeValue();
