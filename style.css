@@ -108,6 +108,7 @@ body {
 }
 
 .clear-button {
+    margin-top: 4px;
     box-sizing: border;
     font-family: var(--font-family);
     justify-self: flex-end;
@@ -125,7 +126,11 @@ body {
     align-self: flex-end;
 }
 
-
+.slider {
+    width:100%;
+    outline:none;
+    background-color: var(--call-to-action);
+}
 
 .column {
     border-radius: 20px;

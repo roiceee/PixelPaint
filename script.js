@@ -50,6 +50,7 @@ function getContainerSize (){
     return divSize;
 }
 
+
 function calculateCellSize(x, num) {
     colHeight = num / x;
     colWidth = num;
