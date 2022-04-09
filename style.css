@@ -1,0 +1,30 @@
+:root {
+    --clr-black: #000000;
+    --clr-red: #FD6060;
+    --clr-yellow: #FFF970;
+    --clr-blue: #6384fA;
+    --clr-green: #8BF27A;
+    --clr-purple: #E799EE;
+    --clr-white: #ffffff;
+}
+
+html {
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    width: auto;
+    height: auto;
+    background-color: #d8d8d8;
+    padding-top: 20px;
+}
+
+.container-1 {
+    border-radius: 20px;
+    width: 100%;
+    margin:auto;
+    max-width: 1400px;
+    background-color: white;
+}
