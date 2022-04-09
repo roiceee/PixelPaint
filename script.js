@@ -87,13 +87,13 @@ function setWhite() {
         row.style.backgroundColor = "white";
     })
     cols.forEach((col) => {
-        row.style.backgroundColor = "white";
+        col.style.backgroundColor = "white";
     })
 }
 
 function changeColor(e) {
     //this will only take effect on mousehold
-    if (e.type === 'mouseover' && !mouseDown) return
+    if (e.type === 'mouseover' && !mouseDown||hover) return
 
     switch(activeButton) {
         case "black": e.target.style.backgroundColor = "var(--clr-1)"
@@ -112,7 +112,28 @@ function changeColor(e) {
         break;
         case "white": e.target.style.backgroundColor = "var(--clr-8)"
         break;
-    }
+    }}
+    
+    function changeColor1(e) {
+       
+        switch(activeButton) {
+            case "black": e.target.style.backgroundColor = "var(--clr-1)"
+            break;
+            case "red": e.target.style.backgroundColor = "var(--clr-2)"
+            break;
+            case "blue": e.target.style.backgroundColor = "var(--clr-4)"
+            break;
+            case "green": e.target.style.backgroundColor = "var(--clr-5)"
+            break;
+            case "yellow": e.target.style.backgroundColor = "var(--clr-3)"
+            break;
+            case "pink": e.target.style.backgroundColor = "var(--clr-6)"
+            break;
+            case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 7) + 1})`
+            break;
+            case "white": e.target.style.backgroundColor = "var(--clr-8)"
+            break;
+        }
 }
 function setActiveButton(buttonName) {
     switch(buttonName) {
@@ -140,6 +161,8 @@ function divEventListener() {
     divs.forEach((e) => {
         e.addEventListener('mousedown', changeColor);
         e.addEventListener('mouseover', changeColor);
+        e.addEventListener('touchstart', changeColor1);
+        e.addEventListener('touchmove', changeColor1);
     })
 }
 
