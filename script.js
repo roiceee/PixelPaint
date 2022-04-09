@@ -27,12 +27,8 @@ function generateColors () {
     }
 }
 
-function generateCanvas(x) {
-   
-        let divSize = document.querySelector('.div-container').offsetHeight;
-        divSize = divSize - 4;
-        console.log(divSize);
-        calculateCellSize(x, divSize);
+function generateCanvas(x ,num) {
+        calculateCellSize(x, num);
     for (let i = 0; i < x; i++){
         const container = document.querySelector('.div-container');
         const div1 = document.createElement('div');
@@ -47,12 +43,18 @@ function generateCanvas(x) {
         }
     }
 }
+function getContainerSize (){
+    let divSize = document.querySelector('.div-container').offsetHeight;
+    divSize = divSize - 4;
+    console.log(divSize);
+    return divSize;
+}
 
-function calculateCellSize(x, divSize) {
-    colHeight = divSize / x;
-    colWidth = divSize;
+function calculateCellSize(x, num) {
+    colHeight = num / x;
+    colWidth = num;
     rowHeight = colHeight;
-    rowWidth = divSize / x;
+    rowWidth = num / x;
 }
 
 let gridValue = 100;
@@ -60,5 +62,6 @@ let colHeight = 0;
 let colWidth = 0;
 let rowHeight = 0;
 let rowWidth = 0;
+let containerSize = getContainerSize();
 generateColors();
-generateCanvas(gridValue);
+generateCanvas(gridValue, containerSize);
