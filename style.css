@@ -208,6 +208,12 @@ button:active {
     color: var(--clr-5);
 }
 
+.row {
+    background-color: white;
+}
+
+
+
 
 @media (min-width: 1201px) {
     button:hover {
