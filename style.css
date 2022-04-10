@@ -22,7 +22,6 @@ body {
     width: auto;
     height: auto;
     background-color: rgb(33, 33, 33);
-    padding-top: 20px;
     background-repeat:no-repeat;
 }
 
@@ -56,8 +55,8 @@ body {
 /*components of container-2*/
 
 .div-container {
-    max-width: 600px;
-    max-height: 600px;
+    max-width: 780px;
+    max-height: 780px;
     height: 90vw;
     width: 90vw;
     border: 2px solid black;

@@ -36,11 +36,13 @@ function generateCanvas(gridValue ,containerSize) {
         const container = document.querySelector('.div-container');
         const div1 = document.createElement('div');
         div1.setAttribute('class', 'column');
+        div1.setAttribute('draggable', 'false');
         div1.setAttribute('style', `height: ${colHeight}px; width: ${colWidth}px`);
         container.append(div1);
         for (let j= 0; j < gridValue; j++) {
             const div2 = document.createElement('div');
             div2.setAttribute('class', 'row');
+            div2.setAttribute('draggable', 'false');
             div2.setAttribute('style', `height: ${rowHeight}px; width: ${rowWidth}px`);
             div1.append(div2);
         }
@@ -108,7 +110,7 @@ function changeColor(e) {
         break;
         case "pink": e.target.style.backgroundColor = "var(--clr-6)"
         break;
-        case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 7) + 1})`
+        case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 5) + 2})`
         break;
         case "white": e.target.style.backgroundColor = "var(--clr-8)"
         break;
@@ -129,7 +131,7 @@ function changeColor(e) {
             break;
             case "pink": e.target.style.backgroundColor = "var(--clr-6)"
             break;
-            case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 7) + 1})`
+            case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 5) + 2})`
             break;
             case "white": e.target.style.backgroundColor = "var(--clr-8)"
             break;
@@ -177,12 +179,21 @@ function createModal() {
       }
 }
 
+function stopDrag() {
+    const divs = document.querySelectorAll('div')
+    divs.forEach((div) => {
+        div.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+    })
+})
+}
+
 
 function divEventListener() {
     const divs = document.querySelectorAll('.row');
     divs.forEach((e) => {
         //enable hover on touchscreen
-        if (window.matchMedia("(max-width: 1000px)").matches)  {
+        if (window.matchMedia("(max-width: 800px)").matches)  {
             e.addEventListener('touchstart', changeColor1);
             e.ontouchmove = changeColor1;
             setRangeSlider();
@@ -192,9 +203,10 @@ function divEventListener() {
             }
             
         }
-        else if (window.matchMedia("(min-width: 1001px)").matches){
+        else if (window.matchMedia("(min-width: 801px)").matches){
             e.addEventListener('mousedown', changeColor);
-            e.addEventListener('mouseover', changeColor);   
+            e.addEventListener('mouseover', changeColor); 
+            stopDrag();  
         }
     })
 }
