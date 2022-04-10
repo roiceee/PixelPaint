@@ -55,10 +55,8 @@ body {
 /*components of container-2*/
 
 .div-container {
-    max-width: 600px;
-    max-height: 600px;
-    height: 90vw;
-    width: 90vw;
+    width: 650px;
+    height: 650px;
     background-color: white;
     display: flex;
     flex-flow: column;
@@ -271,7 +269,16 @@ button:active {
     .modal-content {
         margin: 50% auto; /* 15% from the top and centered */
     }
-   
+    .div-container {
+        width: 600px;
+        height: 600px;
+    }
+}
+@media only screen and (max-width: 650px){
+    .div-container {
+        width: 400px;
+        height: 400px;
+    }
 }
 @media only screen and (max-width: 425px){
 	/*Small smartphones [325px -> 425px]*/
@@ -281,6 +288,10 @@ button:active {
     .title {
         font-size: 2rem;
     }
+    .div-container {
+        width: 300px;
+        height: 300px;
+    }
     
 }
 
@@ -288,6 +299,10 @@ button:active {
 	/*Small smartphones [325px -> 425px]*/
     .title {
         font-size: 1.5rem;
+    }
+    .div-container {
+        width: 270px;
+        height: 270px;
     }
     
 }
