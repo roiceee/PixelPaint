@@ -27,8 +27,6 @@ function generateColors () {
     }
 }
 
-
-
 function generateCanvas(gridValue ,containerSize) {
         gridValue = parseInt(gridValue);
         calculateCellSize(gridValue, containerSize);
@@ -49,6 +47,7 @@ function generateCanvas(gridValue ,containerSize) {
         }
     }
 }
+
 function calculateCellSize(gridValue, containerSize) {
     colHeight = containerSize / gridValue;
     colWidth = containerSize;
@@ -62,6 +61,7 @@ function getContainerSize (){
     console.log(divSize);
     return divSize;
 }
+
 function getRangeValue(x) {
         
         document.querySelector('.slider').oninput = function () {
@@ -72,6 +72,7 @@ function getRangeValue(x) {
         textValue.textContent = y + " x " + y;
     }
 }
+
 function clearCanvas() {
     const rows = document.querySelectorAll('.row');
     const cols = document.querySelectorAll('.column');
@@ -82,6 +83,7 @@ function clearCanvas() {
         col.remove();
     })
 }
+
 function setWhite() {
     const rows = document.querySelectorAll('.row');
     const cols = document.querySelectorAll('.column');
@@ -95,48 +97,38 @@ function setWhite() {
 
 function changeColor(e) {
     //this will only take effect on mousehold    
-    if (e.type === 'mouseover' && !mouseDown) return
-
-    switch(activeButton) {
-        case "black": e.target.style.backgroundColor = "var(--clr-1)"
-        break;
-        case "red": e.target.style.backgroundColor = "var(--clr-2)"
-        break;
-        case "blue": e.target.style.backgroundColor = "var(--clr-4)"
-        break;
-        case "green": e.target.style.backgroundColor = "var(--clr-5)"
-        break;
-        case "yellow": e.target.style.backgroundColor = "var(--clr-3)"
-        break;
-        case "pink": e.target.style.backgroundColor = "var(--clr-6)"
-        break;
-        case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 5) + 2})`
-        break;
-        case "white": e.target.style.backgroundColor = "var(--clr-8)"
-        break;
-    }}
+    if (e.type === 'mouseover' && !mouseDown){
+        return;
+    } 
+     colorSwitch(e);
+    }
     
     function changeColor1(e) {
        //for touch screen devices
-        switch(activeButton) {
-            case "black": e.target.style.backgroundColor = "var(--clr-1)"
-            break;
-            case "red": e.target.style.backgroundColor = "var(--clr-2)"
-            break;
-            case "blue": e.target.style.backgroundColor = "var(--clr-4)"
-            break;
-            case "green": e.target.style.backgroundColor = "var(--clr-5)"
-            break;
-            case "yellow": e.target.style.backgroundColor = "var(--clr-3)"
-            break;
-            case "pink": e.target.style.backgroundColor = "var(--clr-6)"
-            break;
-            case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 5) + 2})`
-            break;
-            case "white": e.target.style.backgroundColor = "var(--clr-8)"
-            break;
-        }
+       colorSwitch(e);
 }
+
+function colorSwitch(e) {
+    switch(activeButton) {
+        case "black": e.target.style.backgroundColor = "var(--clr-1)";
+        break;
+        case "red": e.target.style.backgroundColor = "var(--clr-2)";
+        break;
+        case "blue": e.target.style.backgroundColor = "var(--clr-4)";
+        break;
+        case "green": e.target.style.backgroundColor = "var(--clr-5)";
+        break;
+        case "yellow": e.target.style.backgroundColor = "var(--clr-3)";
+        break;
+        case "pink": e.target.style.backgroundColor = "var(--clr-6)";
+        break;
+        case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 5) + 2})`;
+        break;
+        case "white": e.target.style.backgroundColor = "var(--clr-8)";
+        break;
+    }
+}
+
 function setActiveButton(buttonName) {
     switch(buttonName) {
         case "black": activeButton = "black";
@@ -192,6 +184,7 @@ function createModal() {
 
 function modalButtons(modal, span) {
     modal.style.display = "block";
+    generateCanvas(gridValue, containerSize);
         span.onclick = function() {
             modal.style.display = "none";
           }
@@ -201,7 +194,6 @@ function modalButtons(modal, span) {
             }
           }
 }
-
 
 function divEventListener(e) {
         e.addEventListener('touchstart', changeColor1);
@@ -226,9 +218,8 @@ let mouseDown = false;
 let modalCreated = true;
 
 generateColors();
-generateCanvas(gridValue, containerSize);
-document.body.onmousedown = () => (mouseDown = true)
-document.body.onmouseup = () => (mouseDown = false)
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
 adjustSliderBasedonDevice();
 createModal();
 
