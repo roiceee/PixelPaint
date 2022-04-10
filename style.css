@@ -276,12 +276,26 @@ button:active {
 }
 @media only screen and (max-width: 650px){
     .div-container {
-        width: 400px;
-        height: 400px;
+        width: 500px;
+        height: 500px;
     }
 }
-@media only screen and (max-width: 425px){
-	/*Small smartphones [325px -> 425px]*/
+@media only screen and (max-width: 520px) {
+    .div-container {
+        width: 425px;
+        height: 425px;
+    }
+}
+@media only screen and (max-width: 425px) {
+    .div-container {
+        width: 380px;
+        height: 380px;
+    }
+    .title {
+        font-size: 2rem;
+    }
+}
+@media only screen and (max-width: 380px){
     .pixel-size-control {
         margin-top: 0px;
     }
@@ -289,14 +303,23 @@ button:active {
         font-size: 2rem;
     }
     .div-container {
-        width: 300px;
-        height: 300px;
+        width: 330px;
+        height: 330px;
+    }
+}
+
+@media only screen and (max-width: 330px){
+    .title {
+        font-size: 1.5rem;
+    }
+    .div-container {
+        width: 270px;
+        height: 270px;
     }
     
 }
 
 @media only screen and (max-width: 290px){
-	/*Small smartphones [325px -> 425px]*/
     .title {
         font-size: 1.5rem;
     }
