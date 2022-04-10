@@ -101,7 +101,7 @@ body {
     display: flex;
     flex-flow: row wrap;
     gap: 8px;
-    background-color: #4d4d4d;
+    background-color: #2e2e2e;
     width: fit-content;
     padding: 8px;
     border-radius: 8px;
@@ -137,8 +137,8 @@ button {
     justify-self: flex-end;
     align-self: center;
     padding: 8px;
-    border-radius: 20px;
-    background-color: #ffa6ed;
+    border-radius: 8px;
+    background-color: #ff90e9;
     font-size: 1rem;
     width: 150px;
     height: 40px;
@@ -147,7 +147,6 @@ button {
 
 button:active {
     transform: scale(1.1);
-    background-color: #ff8ce8;
 }
 
 .screenshot {
@@ -231,11 +230,27 @@ button:active {
     align-items: center;
 }
 
+.butContainer {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+
+.yesButton {
+     transform: scale(0.9);
+     font-weight: 700;
+     font-size: 1.1rem;
+}
+.noButton {
+    transform: scale(0.9);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
 
 
 @media (min-width: 1201px) {
     button:hover {
-        background-color: #ff8ce8;
+        background-color: #ff66e0;
     }
     .modal-content {
         margin: 15% auto; /* 15% from the top and centered */
@@ -360,7 +375,7 @@ button:active {
   
   /* Modal Content/Box */
   .modal-content {
-    background-color: #000000;
+    background-color: #1d1d1d;
     text-align: center;
     padding: 10px;
     width: fit-content; /* Could be more or less, depending on screen size */

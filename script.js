@@ -68,6 +68,7 @@ function getRangeValue(x) {
 }
 
 function clearCanvas() {
+
     const rows = document.querySelectorAll('.row');
     const cols = document.querySelectorAll('.column');
     rows.forEach((row) => {
@@ -76,18 +77,10 @@ function clearCanvas() {
     cols.forEach((col) => {
         col.remove();
     })
+    generateCanvas(gridValue ,containerSize);
 }
 
-function setWhite() {
-    const rows = document.querySelectorAll('.row');
-    const cols = document.querySelectorAll('.column');
-    rows.forEach((row) => {
-        row.style.backgroundColor = "white";
-    })
-    cols.forEach((col) => {
-        col.style.backgroundColor = "white";
-    })
-}
+
 
 function changeColor(e) {
     //this will only take effect on mousehold    
@@ -170,27 +163,52 @@ function createModal() {
     if ((window.matchMedia("(min-width: 801px)").matches)) {
         const text = document.querySelector('.modal-text');
         text.textContent = "Hi! You are using PixelPaint on desktop! Enable browser fullscreen for better experience. Thanks!";
-        modalButtons(modal, span);
     }
-    else {
-        const modal = document.getElementById("myModal");
-        const span = document.getElementsByClassName("close")[0];
-        modalButtons(modal, span);
-    }
-    
+    modalButtons(modal, span);
 }
+
+function askModal(){
+    const container = document.querySelector('.butContainer');
+    yesButton.setAttribute('class', 'yesButton')
+    noButton.setAttribute('class', 'noButton')
+    yesButton.textContent = "Yes";
+    noButton.textContent = "No";
+    container.append(yesButton,noButton);
+    const modal = document.getElementById("myModal");
+    const text = document.querySelector('.modal-text');
+    text.textContent = "Are you sure? Your progress will be deleted.";
+    modal.style.display = "block";
+    yesButton.style.display = "block";
+    noButton.style.display = "block";
+    decisionRoom();
+}
+
+function decisionRoom() {
+    yesButton.onclick = function() { 
+        clearCanvas();
+        disableAskModalButtons();
+        }
+    noButton.onclick = function() {
+        disableAskModalButtons();
+    }
+}
+
 
 function modalButtons(modal, span) {
     modal.style.display = "block";
-    generateCanvas(gridValue, containerSize);
-        span.onclick = function() {
-            modal.style.display = "none";
-          }
+    span.onclick = function() {
+        modal.style.display = "none";}
           window.onclick = function(event) {
             if (event.target == modal) {
-              modal.style.display = "none";
+                modal.style.display = "none";
             }
           }
+}
+function disableAskModalButtons () {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    yesButton.style.display = "none";
+    noButton.style.display = "none";
 }
 
 function divEventListener(e) {
@@ -231,9 +249,12 @@ const greenButton = document.querySelector('#colordiv5');
 const pinkButton = document.querySelector('#colordiv6');
 const rainbowButton = document.querySelector('#colordiv7');
 const whiteButton = document.querySelector('#colordiv8');
+const yesButton =  document.createElement('button');
+const noButton =  document.createElement('button');
 
-genButton.addEventListener('click', () => {clearCanvas(); generateCanvas(gridValue, containerSize);});
-clearButton.addEventListener('click', () => setWhite());
+
+genButton.addEventListener('click', () => askModal());
+clearButton.addEventListener('click', () => askModal());
 blackButton.addEventListener('click',() =>  setActiveButton("black"));
 redButton.addEventListener('click', () =>  setActiveButton("red"));
 yellowButton.addEventListener('click', () =>  setActiveButton("yellow"));
@@ -245,6 +266,11 @@ whiteButton.addEventListener('click', () =>  setActiveButton("white"));
 
 
 
+
+generateCanvas(gridValue, containerSize);
+window.onbeforeunload = function () {
+    return 'Do you really want to perform the action?';
+   }
 
 
 
