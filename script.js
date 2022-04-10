@@ -92,8 +92,8 @@ function setWhite() {
 }
 
 function changeColor(e) {
-    //this will only take effect on mousehold
-    if (e.type === 'mouseover' && !mouseDown||hover) return
+    //this will only take effect on mousehold    
+    if (e.type === 'mouseover' && !mouseDown) return
 
     switch(activeButton) {
         case "black": e.target.style.backgroundColor = "var(--clr-1)"
@@ -115,7 +115,7 @@ function changeColor(e) {
     }}
     
     function changeColor1(e) {
-       
+       //for touch screen devices
         switch(activeButton) {
             case "black": e.target.style.backgroundColor = "var(--clr-1)"
             break;
@@ -156,13 +156,46 @@ function setActiveButton(buttonName) {
     }
 }
 
+//reduce available canvas size on mobile devices
+function setRangeSlider() {
+        const slider = document.querySelector('.slider');
+        slider.setAttribute('max', 20);
+}
+
+function createModal() {
+    
+    const modal = document.getElementById("myModal");
+    const span = document.getElementsByClassName("close")[0];
+    modal.style.display = "block";
+    span.onclick = function() {
+        modal.style.display = "none";
+      }
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+}
+
+
 function divEventListener() {
     const divs = document.querySelectorAll('.row');
     divs.forEach((e) => {
-        e.addEventListener('mousedown', changeColor);
-        e.addEventListener('mouseover', changeColor);
-        e.addEventListener('touchstart', changeColor1);
-        e.addEventListener('touchmove', changeColor1);
+        //enable hover on touchscreen
+        if (window.matchMedia("(max-width: 1000px)").matches)  {
+            e.addEventListener('touchstart', changeColor1);
+            e.ontouchmove = changeColor1;
+            setRangeSlider();
+            if (modalCreated) {
+                createModal();
+                modalCreated = false;
+            }
+            
+        }
+        else if (window.matchMedia("(min-width: 1001px)").matches){
+            e.addEventListener('mousedown', changeColor);
+            e.addEventListener('mouseover', changeColor);   
+        }
     })
 }
 
@@ -170,11 +203,8 @@ function divEventListener() {
 //add a function that changes the divs css only if the mouse in down
 
 
-
-
-
 let key;
-let gridValue = 16;
+let gridValue = 10;
 let colHeight = 0;
 let colWidth = 0;
 let rowHeight = 0;
@@ -182,11 +212,14 @@ let rowWidth = 0;
 let containerSize = getContainerSize();
 let activeButton;
 let mouseDown = false;
+let modalCreated = true;
+
 generateColors();
 generateCanvas(gridValue, containerSize);
 getRangeValue();
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
+
 
 
 const genButton = document.querySelector('.gen-button');
