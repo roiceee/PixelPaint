@@ -55,8 +55,8 @@ body {
 /*components of container-2*/
 
 .div-container {
-    max-width: 780px;
-    max-height: 780px;
+    max-width: 650px;
+    max-height: 650px;
     height: 90vw;
     width: 90vw;
     border: 2px solid black;
