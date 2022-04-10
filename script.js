@@ -164,19 +164,32 @@ function setRangeSlider() {
         slider.setAttribute('max', 20);
 }
 
-function createModal() {
-    
+function createModal(device) {
     const modal = document.getElementById("myModal");
     const span = document.getElementsByClassName("close")[0];
+    if (device == "laptop") {
+        const text = document.querySelector('.modal-text');
+        text.textContent = "Hi! You are using PixelPaint on desktop! Enable browser fullscreen for better experience. Thanks!";
+        modalButtons(modal, span);
+    }
+    else {
+        const modal = document.getElementById("myModal");
+        const span = document.getElementsByClassName("close")[0];
+        modalButtons(modal, span);
+    }
+    
+}
+
+function modalButtons(modal, span) {
     modal.style.display = "block";
-    span.onclick = function() {
-        modal.style.display = "none";
-      }
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
+        span.onclick = function() {
+            modal.style.display = "none";
+          }
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          }
 }
 
 function stopDrag() {
@@ -207,6 +220,10 @@ function divEventListener() {
         else if (window.matchMedia("(min-width: 801px)").matches){
             e.addEventListener('mousedown', changeColor);
             e.addEventListener('mouseover', changeColor); 
+            if (modalCreated) {
+                createModal("laptop");
+                modalCreated = false;
+            }
             stopDrag();  
             getRangeValue(1);
         }
