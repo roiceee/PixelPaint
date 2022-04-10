@@ -141,6 +141,8 @@ function setActiveButton(buttonName) {
 function setRangeSlider() {
         const slider = document.querySelector('.slider');
         slider.setAttribute('max', 24);
+        slider.setAttribute('value', 8);
+        gridValue = 8;
 }
 
 function adjustSliderBasedonDevice() {
