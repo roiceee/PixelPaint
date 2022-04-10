@@ -56,9 +56,9 @@
                 <div class="pixel-size-control">
                     <h3>Number of Pixels</h3>
                     <div class="value-container">
-                        <p class="count">10 x 10</p>
+                        <p class="count">16 x 16</p>
                     </div>
-                    <input type="range" min="1" max="50" value="10" class="slider">
+                    <input type="range" min="4" max="64" value="16" step = "4"class="slider">
                     <button type="button" class="gen-button"><strong>Apply</strong></button>
                     <button type="button" class="screenshot"><Strong>Save Canvas</Strong></button>
                 </div>
@@ -78,7 +78,7 @@
     html2canvas(document.querySelector('.div-container')).then((canvas) => {
     let a = document.createElement("a");
     a.download = "PixelPaintCanvas.png";
-    a.href = canvas.toDataURL("image/png");
+    a.href = canvas.toDataURL("image/jpg");
     a.click(); 
   });
   });

@@ -23,6 +23,7 @@ body {
     height: auto;
     background-color: rgb(33, 33, 33);
     background-repeat:no-repeat;
+    box-sizing: border-box;
 }
 
 .container-1 {
@@ -57,10 +58,18 @@ body {
 .div-container {
     width: 650px;
     height: 650px;
-    background-color: white;
-    display: flex;
-    flex-flow: column;
     touch-action: none;
+    display: grid;
+    box-sizing: border-box;
+}
+
+.row {
+    box-sizing: border-box;
+    border: 0px;
+    border-style: none !important;
+    cursor: crosshair;
+    background-color: white;
+    display: block;
 }
 
 .control-area {
@@ -180,11 +189,6 @@ button:active {
     background-color: #ff00cc;
 }
 
-.column {
-    border-radius: 20px;
-    display: flex;
-}
-
 
 .letter1 {
      color: var(--clr-8);
@@ -217,16 +221,14 @@ button:active {
     color: var(--clr-5);
 }
 
-.row {
-    border: 0px;
-    border-style: none !important;
-    cursor: crosshair;
-    display: inline block;
-}
+
 .column {
     border: 0px;
     border-style: none !important;
     display: flex;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 
@@ -277,7 +279,7 @@ button:active {
 	/*Big smartphones [426px -> 600px]*/
     .slider {
     
-        background: linear-gradient(to right, #ff85e7 50%, white 50%);
+        background: linear-gradient(to right, #ff85e7 15%, white 30%);
     }
     .modal-content {
         margin: 50% auto; /* 15% from the top and centered */

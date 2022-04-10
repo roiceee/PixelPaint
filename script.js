@@ -28,35 +28,29 @@ function generateColors () {
 }
 
 function generateCanvas(gridValue ,containerSize) {
+         const container = document.querySelector('.div-container');
+        container.style.gridTemplateColumns = `repeat(${gridValue}, 1fr)`
+        container.style.gridTemplateRows = `repeat(${gridValue}, 1fr)`
         gridValue = parseInt(gridValue);
         calculateCellSize(gridValue, containerSize);
-    for (let i = 0; i < gridValue; i++){
-        const container = document.querySelector('.div-container');
-        const div1 = document.createElement('div');
-        div1.setAttribute('class', 'column');
-        div1.setAttribute('draggable', 'false');
-        div1.setAttribute('style', `height: ${colHeight}px; width: ${colWidth}px`);
-        container.append(div1);
-        for (let j= 0; j < gridValue; j++) {
+        for (let j= 0; j < gridValue * gridValue; j++) {
             const div2 = document.createElement('div');
             div2.setAttribute('class', 'row');
             div2.setAttribute('draggable', 'false');
-            div2.setAttribute('style', `height: ${rowHeight}px; width: ${rowWidth}px`);
-            div1.append(div2);
+            //div2.setAttribute('style', `height: ${rowHeight}px; width: ${rowWidth}px`);
+            container.append(div2);
             divEventListener(div2);
         }
     }
-}
+
 
 function calculateCellSize(gridValue, containerSize) {
-    colHeight = containerSize / gridValue;
-    colWidth = containerSize;
-    rowHeight = colHeight;
-    rowWidth = containerSize / gridValue;
+    rowHeight = (containerSize / gridValue);
+    rowWidth = rowHeight;
 }
 
 function getContainerSize (){
-    let divSize = document.querySelector('.div-container').offsetWidth;
+    let divSize = parseFloat(document.querySelector('.div-container').offsetWidth);
     divSize = divSize;
     console.log(divSize);
     return divSize;
@@ -67,7 +61,7 @@ function getRangeValue(x) {
         document.querySelector('.slider').oninput = function () {
         gridValue = parseInt(this.value);
         y = this.value;
-        this.style.background = `linear-gradient(to right, #ff7ee5 ${y * x}%, white 50%`;
+        this.style.background = `linear-gradient(to right, #ff7ee5 ${y * x}%, white 75%`;
         const textValue = document.querySelector('.count');
         textValue.textContent = y + " x " + y;
     }
@@ -153,16 +147,20 @@ function setActiveButton(buttonName) {
 //reduce available canvas size on mobile devices
 function setRangeSlider() {
         const slider = document.querySelector('.slider');
-        slider.setAttribute('max', 20);
+        slider.setAttribute('max', 24);
 }
 
 function adjustSliderBasedonDevice() {
     if (window.matchMedia("(max-width: 800px)").matches)  {
         setRangeSlider();
-        getRangeValue(5);
+        getRangeValue(4);
+        const slider = document.querySelector('.slider');
+        const count = document.querySelector('.count');
+        slider.setAttribute('value', '8');
+        count.textContent = "8 x 8";
     }
         else if (window.matchMedia("(min-width: 801px)").matches){
-        getRangeValue(2);
+        getRangeValue(1.56);
     }
 }
 
@@ -207,11 +205,11 @@ function divEventListener(e) {
 
 
 let key;
-let gridValue = 10;
-let colHeight = 0;
-let colWidth = 0;
-let rowHeight = 0;
-let rowWidth = 0;
+let gridValue = 16;
+let colHeight = 0.0;
+let colWidth = 0.0;
+let rowHeight = 0.0;
+let rowWidth = 0.0;
 let containerSize = getContainerSize();
 let activeButton;
 let mouseDown = false;
