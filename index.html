@@ -35,8 +35,10 @@
             </p>
         </div>
         <div class="container-2">
+            <div class="save-div"> 
             <div class="div-container" draggable="false">
-                <!--This is where the mini divs come in-->
+                 <!--This is where the mini divs come in-->
+            </div>
             </div>
             <div class="control-area">
                 <div class="control-area-1">
@@ -58,6 +60,7 @@
                     </div>
                     <input type="range" min="1" max="50" value="10" class="slider">
                     <button type="button" class="gen-button"><strong>Apply</strong></button>
+                    <button type="button" class="screenshot"><Strong>Save Canvas</Strong></button>
                 </div>
             </div>
             </div>
@@ -65,7 +68,20 @@
                     <a class="myName" href="https://github.com/jroiceee/PixelPaint">jroicealdeza@gmail.com</a>
             </div>
             </div>
+            
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.4/html2canvas.min.js"> </script>
+    <script>
+    const saveButton = document.querySelector('.screenshot');
+    saveButton.addEventListener('click', () => {
+    html2canvas(document.querySelector('.div-container')).then((canvas) => {
+    let a = document.createElement("a");
+    a.download = "PixelPaintCanvas.png";
+    a.href = canvas.toDataURL("image/png");
+    a.click(); 
+  });
+  });
+    </script>
 </body>
 </html>

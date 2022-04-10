@@ -141,6 +141,10 @@ button:active {
     background-color: #ff8ce8;
 }
 
+.screenshot {
+    background-color: rgb(241, 241, 241);
+    margin-top: 8px;
+}
 
 
 .pixel-size-control {
@@ -214,10 +218,16 @@ button:active {
 }
 
 .row {
-    background-color: white;
+    border: 0px;
+    border-style: none !important;
     cursor: crosshair;
+    display: inline block;
 }
-
+.column {
+    border: 0px;
+    border-style: none !important;
+    display: flex;
+}
 
 
 
@@ -227,6 +237,9 @@ button:active {
     }
     .modal-content {
         margin: 15% auto; /* 15% from the top and centered */
+    }
+    .screenshot:hover {
+        background-color: rgb(197, 197, 197)
     }
 }
 
