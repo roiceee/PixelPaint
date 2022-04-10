@@ -55,11 +55,10 @@ body {
 /*components of container-2*/
 
 .div-container {
-    max-width: 650px;
-    max-height: 650px;
+    max-width: 600px;
+    max-height: 600px;
     height: 90vw;
     width: 90vw;
-    border: 2px solid black;
     background-color: white;
     display: flex;
     flex-flow: column;

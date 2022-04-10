@@ -58,7 +58,7 @@ function calculateCellSize(gridValue, containerSize) {
 
 function getContainerSize (){
     let divSize = document.querySelector('.div-container').offsetWidth;
-    divSize = divSize - 4;
+    divSize = divSize;
     console.log(divSize);
     return divSize;
 }
