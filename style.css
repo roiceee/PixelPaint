@@ -165,7 +165,7 @@ button:active {
     width:100%;
     outline:none;
     height: 10px;
-    background: linear-gradient(to right, #ff85e7 16%, white 50%);
+    background: linear-gradient(to right, #ff85e7 10%, white 50%);
     -webkit-appearance: none;
     border-radius: 25px;
     margin-bottom: 8px;
@@ -260,8 +260,12 @@ button:active {
     }
     
 }
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 800px){
 	/*Big smartphones [426px -> 600px]*/
+    .slider {
+    
+        background: linear-gradient(to right, #ff85e7 50%, white 50%);
+    }
 }
 @media only screen and (max-width: 425px){
 	/*Small smartphones [325px -> 425px]*/
@@ -300,7 +304,6 @@ button:active {
     background-color: #000000;
     margin: 50% auto; /* 15% from the top and centered */
     padding: 10px;
-    border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
     border-radius: 8px;
     font-family: var(--font-family);

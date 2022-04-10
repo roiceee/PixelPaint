@@ -62,12 +62,12 @@ function getContainerSize (){
     console.log(divSize);
     return divSize;
 }
-function getRangeValue() {
+function getRangeValue(x) {
         
         document.querySelector('.slider').oninput = function () {
         gridValue = parseInt(this.value);
         y = this.value;
-        this.style.background = `linear-gradient(to right, #ff7ee5 ${y}%, white 50%`;
+        this.style.background = `linear-gradient(to right, #ff7ee5 ${y * x}%, white 50%`;
         const textValue = document.querySelector('.count');
         textValue.textContent = y + " x " + y;
     }
@@ -201,12 +201,14 @@ function divEventListener() {
                 createModal();
                 modalCreated = false;
             }
+            getRangeValue(5);
             
         }
         else if (window.matchMedia("(min-width: 801px)").matches){
             e.addEventListener('mousedown', changeColor);
             e.addEventListener('mouseover', changeColor); 
             stopDrag();  
+            getRangeValue(1);
         }
     })
 }
@@ -228,7 +230,7 @@ let modalCreated = true;
 
 generateColors();
 generateCanvas(gridValue, containerSize);
-getRangeValue();
+
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
