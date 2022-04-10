@@ -45,9 +45,9 @@ function generateCanvas(gridValue ,containerSize) {
             div2.setAttribute('draggable', 'false');
             div2.setAttribute('style', `height: ${rowHeight}px; width: ${rowWidth}px`);
             div1.append(div2);
+            divEventListener(div2);
         }
     }
-    divEventListener();
 }
 function calculateCellSize(gridValue, containerSize) {
     colHeight = containerSize / gridValue;
@@ -164,10 +164,20 @@ function setRangeSlider() {
         slider.setAttribute('max', 20);
 }
 
-function createModal(device) {
+function adjustSliderBasedonDevice() {
+    if (window.matchMedia("(max-width: 800px)").matches)  {
+        setRangeSlider();
+        getRangeValue(5);
+    }
+        else if (window.matchMedia("(min-width: 801px)").matches){
+        getRangeValue(2);
+    }
+}
+
+function createModal() {
     const modal = document.getElementById("myModal");
     const span = document.getElementsByClassName("close")[0];
-    if (device == "laptop") {
+    if ((window.matchMedia("(min-width: 801px)").matches)) {
         const text = document.querySelector('.modal-text');
         text.textContent = "Hi! You are using PixelPaint on desktop! Enable browser fullscreen for better experience. Thanks!";
         modalButtons(modal, span);
@@ -192,46 +202,16 @@ function modalButtons(modal, span) {
           }
 }
 
-function stopDrag() {
-    const divs = document.querySelectorAll('div')
-    divs.forEach((div) => {
-        div.addEventListener('dragstart', (e) => {
-            e.preventDefault();
-    })
-})
-}
 
-
-function divEventListener() {
-    const divs = document.querySelectorAll('.row');
-    divs.forEach((e) => {
-        //enable hover on touchscreen
-        if (window.matchMedia("(max-width: 800px)").matches)  {
-            e.addEventListener('touchstart', changeColor1);
-            e.ontouchmove = changeColor1;
-            setRangeSlider();
-            if (modalCreated) {
-                createModal();
-                modalCreated = false;
-            }
-            getRangeValue(5);
-            
-        }
-        else if (window.matchMedia("(min-width: 801px)").matches){
-            e.addEventListener('mousedown', changeColor);
-            e.addEventListener('mouseover', changeColor); 
-            if (modalCreated) {
-                createModal("laptop");
-                modalCreated = false;
-            }
-            stopDrag();  
-            getRangeValue(1);
-        }
+function divEventListener(e) {
+        e.addEventListener('touchstart', changeColor1);
+        e.addEventListener('mousedown', changeColor);
+        e.addEventListener('mouseover', changeColor); 
+        e.addEventListener('dragstart', (e) => {
+        e.preventDefault();
     })
 }
 
-//add an eventListener for the all of the divs
-//add a function that changes the divs css only if the mouse in down
 
 
 let key;
@@ -247,11 +227,10 @@ let modalCreated = true;
 
 generateColors();
 generateCanvas(gridValue, containerSize);
-
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
-
-
+adjustSliderBasedonDevice();
+createModal();
 
 const genButton = document.querySelector('.gen-button');
 const clearButton = document.querySelector('.clear-button');
@@ -264,7 +243,7 @@ const pinkButton = document.querySelector('#colordiv6');
 const rainbowButton = document.querySelector('#colordiv7');
 const whiteButton = document.querySelector('#colordiv8');
 
-genButton.addEventListener('click', () => {clearCanvas(); generateCanvas(gridValue, containerSize);} );
+genButton.addEventListener('click', () => {clearCanvas(); generateCanvas(gridValue, containerSize);});
 clearButton.addEventListener('click', () => setWhite());
 blackButton.addEventListener('click',() =>  setActiveButton("black"));
 redButton.addEventListener('click', () =>  setActiveButton("red"));
@@ -274,5 +253,6 @@ greenButton.addEventListener('click', () =>  setActiveButton("green"));
 pinkButton.addEventListener('click', () =>  setActiveButton("pink"));
 rainbowButton.addEventListener('click', () =>  setActiveButton("rainbow"));
 whiteButton.addEventListener('click', () =>  setActiveButton("white"));
+
 
 
