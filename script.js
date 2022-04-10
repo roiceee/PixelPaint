@@ -162,7 +162,7 @@ function createModal() {
     const span = document.getElementsByClassName("close")[0];
     if ((window.matchMedia("(min-width: 801px)").matches)) {
         const text = document.querySelector('.modal-text');
-        text.textContent = "Hi! You are using PixelPaint on desktop! Enable browser fullscreen for better experience. Thanks!";
+        text.textContent = "Hi! You are using PixelPaint on desktop. Enable browser fullscreen for better experience. Thanks!";
     }
     modalButtons(modal, span);
 }
