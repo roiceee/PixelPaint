@@ -159,15 +159,39 @@ function adjustSliderBasedonDevice() {
     }
 }
 
-function createModal() {
+function createModal(isUnsupported) {
     const modal = document.getElementById("myModal");
     const span = document.getElementsByClassName("close")[0];
-    if ((window.matchMedia("(min-width: 801px)").matches)) {
-        const text = document.querySelector('.modal-text');
-        text.textContent = "Hi! You are using PixelPaint on desktop. Enable browser fullscreen for better experience. Thanks!";
+    const text = document.querySelector('.modal-text');
+    const modContent = document.querySelector('.browser-list');
+    if (isUnsupported == true) {
+        const text1 = document.createElement('p');
+        const list = document.createElement('ul');
+        const item1 = document.createElement('li');
+        const item2 = document.createElement('li');
+        const item3 = document.createElement('li');
+        const item4 = document.createElement('li');
+        text.textContent = "We noticed that you are using an unsupported browser. You may not be able to save your canvas.";
+        text1.textContent = "List of supported browsers:";
+        item1.textContent = "Google Chrome";
+        item2.textContent = "Microsoft Edge";
+        item3.textContent = "Mozilla Firefox";
+        item4.textContent = "Opera Browser";
+        list.style.fontSize = "0.8rem";
+        list.style.listStyleType = "none";
+        list.style.paddingLeft = "0px";
+        text1.style.fontSize = "0.8rem";
+        modContent.append(text1,list);
+        list.append(item1, item2, item3, item4);
     }
-    modalButtons(modal, span);
+    else {
+        if ((window.matchMedia("(min-width: 801px)").matches)) {
+            text.textContent = "Hi! You are using PixelPaint on desktop. Enable browser fullscreen for better experience. Thanks!";
+        }
+    }
+    modalButtons(modal, span, modContent);
 }
+
 
 function askModal(){
     const container = document.querySelector('.butContainer');
@@ -196,12 +220,15 @@ function decisionRoom() {
 }
 
 
-function modalButtons(modal, span) {
+function modalButtons(modal, span, modContent) {
     modal.style.display = "block";
     span.onclick = function() {
-        modal.style.display = "none";}
+        modContent.remove();
+        modal.style.display = "none";
+    }
           window.onclick = function(event) {
             if (event.target == modal) {
+                modContent.remove();
                 modal.style.display = "none";
             }
           }
@@ -222,6 +249,17 @@ function divEventListener(e) {
     })
 }
 
+function unsupportedBrowserNotice(){
+    if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
+        createModal(false);
+    } else if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+        createModal(false);
+    } else if(navigator.userAgent.indexOf("Firefox") != -1 ){
+        createModal(false);
+    } else {
+        createModal(true);
+    }
+}
 
 
 let key;
@@ -239,7 +277,7 @@ generateColors();
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 adjustSliderBasedonDevice();
-createModal();
+
 
 const genButton = document.querySelector('.gen-button');
 const clearButton = document.querySelector('.clear-button');
@@ -266,7 +304,7 @@ pinkButton.addEventListener('click', () =>  setActiveButton("pink"));
 rainbowButton.addEventListener('click', () =>  setActiveButton("rainbow"));
 whiteButton.addEventListener('click', () =>  setActiveButton("white"));
 
-
+unsupportedBrowserNotice();
 
 
 generateCanvas(gridValue, containerSize);

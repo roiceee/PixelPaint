@@ -187,6 +187,14 @@ button:active {
     border-radius: 25px;
     background-color: #ff00cc;
 }
+.slider::-moz-range-thumb {
+    cursor: pointer;
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 25px;
+    background-color: #ff00cc;
+}
 
 
 .letter1 {
@@ -379,6 +387,7 @@ button:active {
     text-align: center;
     padding: 10px;
     width: fit-content; /* Could be more or less, depending on screen size */
+    max-width: 600px;
     border-radius: 8px;
     font-family: var(--font-family);
   }
