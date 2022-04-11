@@ -266,6 +266,9 @@ button:active {
     .screenshot:hover {
         background-color: rgb(197, 197, 197)
     }
+    .modal-text1 {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1200px){
@@ -405,4 +408,8 @@ button:active {
     color: rgb(72, 72, 72);
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .modal-text1 {
+     font-size: 0.8rem;
   }
