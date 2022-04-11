@@ -42,7 +42,86 @@ function generateCanvas(gridValue ,containerSize) {
             divEventListener(div2);
         }
     }
+    
+    
+function clearCanvas() {
 
+        const rows = document.querySelectorAll('.row');
+        const cols = document.querySelectorAll('.column');
+        rows.forEach((row) => {
+            row.remove();
+        })
+        cols.forEach((col) => {
+            col.remove();
+        })
+        generateCanvas(gridValue ,containerSize);
+    }
+
+    function decisionRoom() {
+        yesButton.onclick = function() { 
+            clearCanvas();
+            disableAskModalButtons();
+            }
+        noButton.onclick = function() {
+            disableAskModalButtons();
+        }
+    }
+    
+    function changeColor(e) {
+        //this will only take effect on mousehold    
+        if (e.type === 'mouseover' && !mouseDown){
+            return;
+        } 
+         colorSwitch(e);
+        }
+        
+        function changeColor1(e) {
+           //for touch screen devices
+           colorSwitch(e);
+    }
+    
+    function colorSwitch(e) {
+        switch(activeButton) {
+            case "black": e.target.style.backgroundColor = "var(--clr-1)";
+            break;
+            case "red": e.target.style.backgroundColor = "var(--clr-2)";
+            break;
+            case "blue": e.target.style.backgroundColor = "var(--clr-4)";
+            break;
+            case "green": e.target.style.backgroundColor = "var(--clr-5)";
+            break;
+            case "yellow": e.target.style.backgroundColor = "var(--clr-3)";
+            break;
+            case "pink": e.target.style.backgroundColor = "var(--clr-6)";
+            break;
+            case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 5) + 2})`;
+            break;
+            case "white": e.target.style.backgroundColor = "var(--clr-8)";
+            break;
+        }
+    }
+    
+    function setActiveButton(buttonName) {
+        switch(buttonName) {
+            case "black": activeButton = "black";
+            break;
+            case "red": activeButton = "red";
+            break;
+            case "blue": activeButton = "blue";
+            break;
+            case "green": activeButton = "green";
+            break;
+            case "yellow": activeButton = "yellow";
+            break;
+            case "pink": activeButton = "pink";
+            break;
+            case "rainbow": activeButton = "rainbow";
+            break;
+            case "white": activeButton = "white";
+            break;
+        }
+    }
+    
 
 function calculateCellSize(gridValue, containerSize) {
     rowHeight = (containerSize / gridValue);
@@ -66,96 +145,37 @@ function getRangeValue(x) {
         textValue.textContent = y + " x " + y;
     }
 }
-
-function clearCanvas() {
-
-    const rows = document.querySelectorAll('.row');
-    const cols = document.querySelectorAll('.column');
-    rows.forEach((row) => {
-        row.remove();
-    })
-    cols.forEach((col) => {
-        col.remove();
-    })
-    generateCanvas(gridValue ,containerSize);
-}
-
-
-
-function changeColor(e) {
-    //this will only take effect on mousehold    
-    if (e.type === 'mouseover' && !mouseDown){
-        return;
-    } 
-     colorSwitch(e);
-    }
-    
-    function changeColor1(e) {
-       //for touch screen devices
-       colorSwitch(e);
-}
-
-function colorSwitch(e) {
-    switch(activeButton) {
-        case "black": e.target.style.backgroundColor = "var(--clr-1)";
-        break;
-        case "red": e.target.style.backgroundColor = "var(--clr-2)";
-        break;
-        case "blue": e.target.style.backgroundColor = "var(--clr-4)";
-        break;
-        case "green": e.target.style.backgroundColor = "var(--clr-5)";
-        break;
-        case "yellow": e.target.style.backgroundColor = "var(--clr-3)";
-        break;
-        case "pink": e.target.style.backgroundColor = "var(--clr-6)";
-        break;
-        case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 5) + 2})`;
-        break;
-        case "white": e.target.style.backgroundColor = "var(--clr-8)";
-        break;
-    }
-}
-
-function setActiveButton(buttonName) {
-    switch(buttonName) {
-        case "black": activeButton = "black";
-        break;
-        case "red": activeButton = "red";
-        break;
-        case "blue": activeButton = "blue";
-        break;
-        case "green": activeButton = "green";
-        break;
-        case "yellow": activeButton = "yellow";
-        break;
-        case "pink": activeButton = "pink";
-        break;
-        case "rainbow": activeButton = "rainbow";
-        break;
-        case "white": activeButton = "white";
-        break;
-    }
-}
-
 //reduce available canvas size on mobile devices
 function setRangeSlider() {
-        const slider = document.querySelector('.slider');
-        slider.setAttribute('max', 24);
-        slider.setAttribute('value', 8);
-        gridValue = 8;
+    const slider = document.querySelector('.slider');
+    slider.setAttribute('max', 24);
+    slider.setAttribute('value', 8);
+    gridValue = 8;
 }
 
 function adjustSliderBasedonDevice() {
-    if (window.matchMedia("(max-width: 800px)").matches)  {
-        setRangeSlider();
-        getRangeValue(4);
-        const slider = document.querySelector('.slider');
-        const count = document.querySelector('.count');
-        slider.setAttribute('value', '8');
-        count.textContent = "8 x 8";
-    }
-        else if (window.matchMedia("(min-width: 801px)").matches){
-        getRangeValue(1.56);
+if (window.matchMedia("(max-width: 800px)").matches)  {
+    setRangeSlider();
+    getRangeValue(4);
+    const slider = document.querySelector('.slider');
+    const count = document.querySelector('.count');
+    slider.setAttribute('value', '8');
+    count.textContent = "8 x 8";
+}
+    else if (window.matchMedia("(min-width: 801px)").matches){
+    getRangeValue(1.56);
+}
+}
+
+function unsupportedBrowserNotice(){
+    if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
+        createModal(false);
+    } else if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+        createModal(false);
+    } else if(navigator.userAgent.indexOf("Firefox") != -1 ){
+        createModal(false);
+    } else {
+        createModal(true);
     }
 }
 
@@ -192,7 +212,6 @@ function createModal(isUnsupported) {
     modalButtons(modal, span, modContent);
 }
 
-
 function askModal(){
     const container = document.querySelector('.butContainer');
     yesButton.setAttribute('class', 'yesButton')
@@ -209,17 +228,6 @@ function askModal(){
     decisionRoom();
 }
 
-function decisionRoom() {
-    yesButton.onclick = function() { 
-        clearCanvas();
-        disableAskModalButtons();
-        }
-    noButton.onclick = function() {
-        disableAskModalButtons();
-    }
-}
-
-
 function modalButtons(modal, span, modContent) {
     modal.style.display = "block";
     span.onclick = function() {
@@ -233,6 +241,7 @@ function modalButtons(modal, span, modContent) {
             }
           }
 }
+
 function disableAskModalButtons () {
     const modal = document.getElementById("myModal");
     modal.style.display = "none";
@@ -249,19 +258,6 @@ function divEventListener(e) {
     })
 }
 
-function unsupportedBrowserNotice(){
-    if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
-        createModal(false);
-    } else if(navigator.userAgent.indexOf("Chrome") != -1 ) {
-        createModal(false);
-    } else if(navigator.userAgent.indexOf("Firefox") != -1 ){
-        createModal(false);
-    } else {
-        createModal(true);
-    }
-}
-
-
 let key;
 let gridValue = 16;
 let colHeight = 0.0;
@@ -277,7 +273,7 @@ generateColors();
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 adjustSliderBasedonDevice();
-
+unsupportedBrowserNotice();
 
 const genButton = document.querySelector('.gen-button');
 const clearButton = document.querySelector('.clear-button');
@@ -303,9 +299,6 @@ greenButton.addEventListener('click', () =>  setActiveButton("green"));
 pinkButton.addEventListener('click', () =>  setActiveButton("pink"));
 rainbowButton.addEventListener('click', () =>  setActiveButton("rainbow"));
 whiteButton.addEventListener('click', () =>  setActiveButton("white"));
-
-unsupportedBrowserNotice();
-
 
 generateCanvas(gridValue, containerSize);
 window.onbeforeunload = function () {
