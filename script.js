@@ -52,8 +52,8 @@ function setRecentColor (colorValue){
 }
 
 function openEyeDropper() {
-    noEyeDropperModal();
     if (!window.EyeDropper) {
+        noEyeDropperModal();
         return;
       }
     const eyeDropper = new EyeDropper();
