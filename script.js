@@ -51,6 +51,14 @@ function setRecentColor (colorValue){
     }
 }
 
+function openEyeDropper() {
+    const eyeDropper = new EyeDropper();
+    eyeDropper.open().then((result) => {
+        colorValue = result.sRGBHex;
+        setRecentColor(colorValue);
+      });
+}
+
 
 function generateCanvas(gridValue ,containerSize) {
          const container = document.querySelector('.div-container');
@@ -70,7 +78,6 @@ function generateCanvas(gridValue ,containerSize) {
     
     
 function clearCanvas() {
-
         const rows = document.querySelectorAll('.row');
         const cols = document.querySelectorAll('.column');
         rows.forEach((row) => {
@@ -315,6 +322,7 @@ let recentColor1;
 let recentColor2;
 let recentColor3;
 
+
 generateColors();
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
@@ -332,12 +340,12 @@ const orangeButton = document.querySelector('#colordiv6');
 const rainbowButton = document.querySelector('#colordiv7');
 const whiteButton = document.querySelector('#colordiv8');
 const customColor = document.querySelector('.color-picker');
-const recColor1 = document.querySelector('#rec1')
-const recColor2 = document.querySelector('#rec2')
-const recColor3 = document.querySelector('#rec3')
+const eyedropper = document.querySelector('#eyedropper');
+const recColor1 = document.querySelector('#rec1');
+const recColor2 = document.querySelector('#rec2');
+const recColor3 = document.querySelector('#rec3');
 const yesButton =  document.createElement('button');
 const noButton =  document.createElement('button');
-
 
 genButton.addEventListener('click', () => askModal());
 clearButton.addEventListener('click', () => askModal());
@@ -349,10 +357,11 @@ greenButton.addEventListener('click', () =>  setActiveButton("green"));
 orangeButton.addEventListener('click', () =>  setActiveButton("orange"));
 rainbowButton.addEventListener('click', () =>  setActiveButton("rainbow"));
 whiteButton.addEventListener('click', () =>  setActiveButton("white"));
-customColor.addEventListener('change', () =>  setActiveButton("color"))
-recColor1.addEventListener('click', () =>  setActiveButton("rec1"))
-recColor2.addEventListener('click', () =>  setActiveButton("rec2"))
-recColor3.addEventListener('click', () =>  setActiveButton("rec3"))
+customColor.addEventListener('change', () =>  setActiveButton("color"));
+recColor1.addEventListener('click', () =>  setActiveButton("rec1"));
+recColor2.addEventListener('click', () =>  setActiveButton("rec2"));
+recColor3.addEventListener('click', () =>  setActiveButton("rec3"));
+eyedropper.addEventListener('click', () => openEyeDropper());
 
 generateCanvas(gridValue, containerSize);
 window.onbeforeunload = function () {

@@ -100,7 +100,6 @@ body {
 .color-panel {
     display: flex;
     flex-flow: column wrap;
-    gap: 8px;
     background-color: #393939;
     width: fit-content;
     padding: 8px;
@@ -115,12 +114,17 @@ body {
 .color-panel-1 {
     display: flex;
     flex-flow: row;
+    justify-content: center;
     gap: 8px;
+    align-self: center;
+    margin-bottom: 8px;
 }
 .color-panel-2 {
     display: flex;
     flex-flow: row;
+    justify-content: center;
     gap: 8px;
+    align-self: center;
 }
 
 .color-panel-3 {
@@ -128,13 +132,16 @@ body {
     display: flex;
     flex-flow: row;
     justify-content: flex-start;
-    gap: 8px;
+    gap: 12px;
 }
 
 .color-panel-3-left {
     text-align: center;
 }
 .color-panel-3-right {
+    text-align: left;
+}
+.color-panel-3-mid {
     text-align: center;
 }
 
@@ -149,8 +156,8 @@ body {
 
 .colordiv {
     border-radius: 4px;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     background-color: white;
 }
 .reccolordiv {
@@ -170,10 +177,15 @@ body {
     transform: scale(1.1);
 }
 
-.color-picker:active {
+#eyedropper {
+    width: 35px;
+    height: 35px;
+}
+
+.color-picker:hover {
     transform: scale(1.1);
 }
-.reccolordiv:active {
+.reccolordiv:hover {
     transform: scale(1.1);
 }
 
@@ -272,7 +284,7 @@ button:active {
     color: var(--clr-3);
 }
 .letter9 {
-    color: var(--clr-6);
+    color: var(--clr-4);
 }
 .letter10 {
     color: var(--clr-5);
@@ -336,20 +348,23 @@ button:active {
     .color-panel {
         display: block;
     }
-    .color-panel-1 {
-        flex-direction: row;
-        justify-content: space-around;
-        margin-bottom: 8px;
-    }
-    .color-panel-2 {
-        flex-direction: row;
-        justify-content: space-around;
-    }
+
     .control-area-4 {
         text-align: center;
         margin-top: 16px;
     }
-    
+    .color-picker:hover {
+        transform: none;
+    }
+    .reccolordiv:hover {
+        transform: none;
+    }
+    .color-picker:active {
+        transform: scale(1.1);
+    }
+    .reccolordiv:active {
+        transform: scale(1.1);
+    }
 }
 @media only screen and (max-width: 800px){
 	/*Big smartphones [426px -> 600px]*/
