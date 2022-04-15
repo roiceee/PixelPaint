@@ -27,6 +27,31 @@ function generateColors () {
     }
 }
 
+function getColorPickerValue() {
+    const colorpicker = document.querySelector('.color-picker')
+    colorpicker.onchange = (e) => {
+        colorValue = e.target.value; 
+        setRecentColor(colorValue);};
+}
+
+function setRecentColor (colorValue){
+    const div = document.querySelector(`#rec${index}`)
+    div.style.backgroundColor = `${colorValue}`
+    switch (index) {
+        case 1: recentColor1 = colorValue;
+        break;
+        case 2: recentColor2 = colorValue;
+        break;
+        case 3: recentColor3 = colorValue;
+        break;
+    }
+    index++;
+    if (index > 3) {
+        index = 1;
+    }
+}
+
+
 function generateCanvas(gridValue ,containerSize) {
          const container = document.querySelector('.div-container');
         container.style.gridTemplateColumns = `repeat(${gridValue}, 1fr)`
@@ -98,6 +123,14 @@ function clearCanvas() {
             break;
             case "white": e.target.style.backgroundColor = "var(--clr-8)";
             break;
+            case "color": e.target.style.backgroundColor = `${colorValue}`;
+            break;
+            case "rec1": e.target.style.backgroundColor = `${recentColor1}`;
+            break;
+            case "rec2": e.target.style.backgroundColor = `${recentColor2}`;
+            break;
+            case "rec3": e.target.style.backgroundColor = `${recentColor3}`;
+            break;
         }
     }
     
@@ -118,6 +151,14 @@ function clearCanvas() {
             case "rainbow": activeButton = "rainbow";
             break;
             case "white": activeButton = "white";
+            break;
+            case "color": activeButton = "color";
+            break;
+            case "rec1": activeButton = "rec1";
+            break;
+            case "rec2": activeButton = "rec2";
+            break;
+            case "rec3": activeButton = "rec3";
             break;
         }
     }
@@ -268,6 +309,11 @@ let containerSize = getContainerSize();
 let activeButton;
 let mouseDown = false;
 let modalCreated = true;
+let colorValue = getColorPickerValue();
+let index = 1;
+let recentColor1;
+let recentColor2;
+let recentColor3;
 
 generateColors();
 document.body.onmousedown = () => (mouseDown = true);
@@ -285,6 +331,10 @@ const greenButton = document.querySelector('#colordiv5');
 const pinkButton = document.querySelector('#colordiv6');
 const rainbowButton = document.querySelector('#colordiv7');
 const whiteButton = document.querySelector('#colordiv8');
+const customColor = document.querySelector('.color-picker');
+const recColor1 = document.querySelector('#rec1')
+const recColor2 = document.querySelector('#rec2')
+const recColor3 = document.querySelector('#rec3')
 const yesButton =  document.createElement('button');
 const noButton =  document.createElement('button');
 
@@ -299,6 +349,10 @@ greenButton.addEventListener('click', () =>  setActiveButton("green"));
 pinkButton.addEventListener('click', () =>  setActiveButton("pink"));
 rainbowButton.addEventListener('click', () =>  setActiveButton("rainbow"));
 whiteButton.addEventListener('click', () =>  setActiveButton("white"));
+customColor.addEventListener('change', () =>  setActiveButton("color"))
+recColor1.addEventListener('click', () =>  setActiveButton("rec1"))
+recColor2.addEventListener('click', () =>  setActiveButton("rec2"))
+recColor3.addEventListener('click', () =>  setActiveButton("rec3"))
 
 generateCanvas(gridValue, containerSize);
 window.onbeforeunload = function () {
