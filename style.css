@@ -4,7 +4,7 @@
     --clr-3: #FFF970;
     --clr-4: #6384fA;
     --clr-5: #8BF27A;
-    --clr-6: #E799EE;
+    --clr-6: #f7c162;
     --clr-8: #ffffff;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --call-to-action: #67e1ec;
@@ -164,7 +164,7 @@ body {
     border-radius: 4px;
     height: 40px;
     width: 60px;
-    background-color: #d3d3d3;
+    background-color: #ebebeb;
 }
 .colordiv:hover {
     transform: scale(1.1);

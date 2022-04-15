@@ -5,7 +5,7 @@ function generateColors () {
     for (let i = 1; i <= 4; i++) {
         const div = document.createElement('div');
         div.setAttribute('class', 'colordiv');
-        div.setAttribute('id', `colordiv${i}`);
+        div.setAttribute('id', `colordiv${i}`); 
         div.setAttribute('style', `background-color: var(--clr-${i})`);
         container.append(div);
     }
@@ -117,7 +117,7 @@ function clearCanvas() {
             break;
             case "yellow": e.target.style.backgroundColor = "var(--clr-3)";
             break;
-            case "pink": e.target.style.backgroundColor = "var(--clr-6)";
+            case "orange": e.target.style.backgroundColor = "var(--clr-6)";
             break;
             case "rainbow": e.target.style.backgroundColor = `var(--clr-${Math.floor(Math.random() * 5) + 2})`;
             break;
@@ -146,7 +146,7 @@ function clearCanvas() {
             break;
             case "yellow": activeButton = "yellow";
             break;
-            case "pink": activeButton = "pink";
+            case "orange": activeButton = "orange";
             break;
             case "rainbow": activeButton = "rainbow";
             break;
@@ -328,7 +328,7 @@ const redButton = document.querySelector('#colordiv2');
 const yellowButton = document.querySelector('#colordiv3');
 const blueButton = document.querySelector('#colordiv4');
 const greenButton = document.querySelector('#colordiv5');
-const pinkButton = document.querySelector('#colordiv6');
+const orangeButton = document.querySelector('#colordiv6');
 const rainbowButton = document.querySelector('#colordiv7');
 const whiteButton = document.querySelector('#colordiv8');
 const customColor = document.querySelector('.color-picker');
@@ -346,7 +346,7 @@ redButton.addEventListener('click', () =>  setActiveButton("red"));
 yellowButton.addEventListener('click', () =>  setActiveButton("yellow"));
 blueButton.addEventListener('click', () =>  setActiveButton("blue"));
 greenButton.addEventListener('click', () =>  setActiveButton("green"));
-pinkButton.addEventListener('click', () =>  setActiveButton("pink"));
+orangeButton.addEventListener('click', () =>  setActiveButton("orange"));
 rainbowButton.addEventListener('click', () =>  setActiveButton("rainbow"));
 whiteButton.addEventListener('click', () =>  setActiveButton("white"));
 customColor.addEventListener('change', () =>  setActiveButton("color"))
