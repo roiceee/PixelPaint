@@ -164,6 +164,7 @@ body {
     border-radius: 4px;
     height: 40px;
     width: 60px;
+    background-color: #d3d3d3;
 }
 .colordiv:hover {
     transform: scale(1.1);
