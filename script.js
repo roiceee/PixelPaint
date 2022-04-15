@@ -52,6 +52,10 @@ function setRecentColor (colorValue){
 }
 
 function openEyeDropper() {
+    noEyeDropperModal();
+    if (!window.EyeDropper) {
+        return;
+      }
     const eyeDropper = new EyeDropper();
     eyeDropper.open().then((result) => {
         colorValue = result.sRGBHex;
@@ -227,6 +231,17 @@ function unsupportedBrowserNotice(){
     }
 }
 
+function noEyeDropperModal() {
+    const modal = document.getElementById("myModal");
+    const span = document.getElementsByClassName("close")[0];
+    const text = document.querySelector('.modal-text');
+    const text1 = document.querySelector('.modal-text1');
+    text1.style.display = "none";
+    const modContent = document.querySelector('.browser-list');
+    text.textContent = "NOTE: Eyedropper is not available on mobile browsers. Use desktop/laptop for better experience!"
+    modalButtons(modal, span, modContent);
+}
+
 function createModal(isUnsupported) {
     const modal = document.getElementById("myModal");
     const span = document.getElementsByClassName("close")[0];
@@ -277,17 +292,18 @@ function askModal(){
 }
 
 function modalButtons(modal, span, modContent) {
-    modal.style.display = "block";
-    span.onclick = function() {
-        modContent.remove();
-        modal.style.display = "none";
+  
+        modal.style.display = "block";
+        span.onclick = function() {
+            modContent.style.display = "none";
+            modal.style.display = "none";
+        }
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modContent.style.display = "none";
+    modal.style.display = "none";
     }
-          window.onclick = function(event) {
-            if (event.target == modal) {
-                modContent.remove();
-                modal.style.display = "none";
-            }
-          }
+    }
 }
 
 function disableAskModalButtons () {
