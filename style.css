@@ -99,32 +99,80 @@ body {
 
 .color-panel {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     gap: 8px;
-    background-color: #2e2e2e;
+    background-color: #393939;
     width: fit-content;
     padding: 8px;
-    border-radius: 8px;
+    border-radius: 4px;
     align-self: center;
+}
+.color-panel-text {
+    margin: 0px;
+    margin-bottom: 8px;
+    font-family: 1rem;
 }
 .color-panel-1 {
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     gap: 8px;
 }
 .color-panel-2 {
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     gap: 8px;
 }
 
-.colordiv {
-    border-radius: 8px;
-    height: 50px;
-    width: 50px;
+.color-panel-3 {
+    margin-top: 16px;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    gap: 8px;
 }
 
+.color-panel-3-left {
+    text-align: center;
+}
+.color-panel-3-right {
+    text-align: center;
+}
+
+
+
+.recpanel {
+    display: flex;
+    flex-flow: row;
+    gap: 4px;
+    margin-left: 4px;
+}
+
+.colordiv {
+    border-radius: 4px;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+}
+.reccolordiv {
+    border-radius: 4px;
+    height: 40px;
+    width: 40px;
+    background-color: white;
+}
+.color-picker {
+    border: 0px;
+    border-radius: 4px;
+    height: 40px;
+    width: 60px;
+}
 .colordiv:hover {
+    transform: scale(1.1);
+}
+
+.color-picker:active {
+    transform: scale(1.1);
+}
+.reccolordiv:active {
     transform: scale(1.1);
 }
 
@@ -168,6 +216,7 @@ button:active {
     align-self: flex-end;
     text-decoration: none;
     color: white;
+    margin-top: 12px;
 }
 
 .slider {
