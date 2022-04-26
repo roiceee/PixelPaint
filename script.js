@@ -74,7 +74,6 @@ function generateCanvas(gridValue ,containerSize) {
             const div2 = document.createElement('div');
             div2.setAttribute('class', 'row');
             div2.setAttribute('draggable', 'false');
-            //div2.setAttribute('style', `height: ${rowHeight}px; width: ${rowWidth}px`);
             container.append(div2);
             divEventListener(div2);
         }
@@ -276,6 +275,8 @@ function createModal(isUnsupported) {
 }
 
 function askModal(){
+    const text1 = document.querySelector('.modal-text1');
+    text1.style.display = "none";
     const container = document.querySelector('.butContainer');
     yesButton.setAttribute('class', 'yesButton')
     noButton.setAttribute('class', 'noButton')
