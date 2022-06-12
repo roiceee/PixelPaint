@@ -253,12 +253,6 @@ function createModal(isUnsupported) {
         const item2 = document.createElement('li');
         const item3 = document.createElement('li');
         const item4 = document.createElement('li');
-        text.textContent = "We noticed that you are using an unsupported browser. You may not be able to save your canvas.";
-        text1.textContent = "List of supported browsers:";
-        item1.textContent = "Google Chrome";
-        item2.textContent = "Microsoft Edge";
-        item3.textContent = "Mozilla Firefox";
-        item4.textContent = "Opera Browser";
         list.style.fontSize = "0.8rem";
         list.style.listStyleType = "none";
         list.style.paddingLeft = "0px";
