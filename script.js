@@ -15,8 +15,8 @@ function generateColors () {
         div.setAttribute('id', `colordiv${i}`);
         if (i == 7) {
             div.setAttribute('style', `background-image:  url(https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia.istockphoto.com%2Fphotos%2Fdotted-grid-paper-background-texture-seamless-repeat-pattern-picture-id1320330053%3Fb%3D1%26k%3D20%26m%3D1320330053%26s%3D170667a%26w%3D0%26h%3DXisfN35UnuxAVP_sjq3ujbFDyWPurSfSTYd-Ll09Ncc%3D&imgrefurl=https%3A%2F%2Funsplash.com%2Fbackgrounds%2Fcolors%2Fwhite&tbnid=ZOoq1TDI85qMbM&vet=12ahUKEwje7brMr4b3AhVLAaYKHdKeBG8QMygAegUIARDbAQ..i&docid=kJCHVs23uYti-M&w=515&h=336&q=white%20image&ved=2ahUKEwje7brMr4b3AhVLAaYKHdKeBG8QMygAegUIARDbAQ), 
-            linear-gradient(to right, #FD6060, #6384fA, #FFF970, #8BF27A, #E799EE), 
-            linear-gradient(to right, #FD6060, #6384fA, #FFF970, #8BF27A, #E799EE);
+            linear-gradient(to right, #FD6060, #6384fA, #FFF970, #8BF27A, #ffc30f), 
+            linear-gradient(to right, #FD6060, #6384fA, #FFF970, #8BF27A, #ffc30f);
             background-position: 0 0,  0 100px,0 130px;
             background-size:  640px 100px,100% 30px, 100% 30px;}`);
         }
