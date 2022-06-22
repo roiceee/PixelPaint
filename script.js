@@ -191,7 +191,7 @@ function getRangeValue(x) {
         document.querySelector('.slider').oninput = function () {
         gridValue = parseInt(this.value);
         y = this.value;
-        this.style.background = `linear-gradient(to right, #ff7ee5 ${y * x}%, white 75%`;
+        this.style.background = `linear-gradient(to right, #ffda6a ${y * x}%, white 75%`;
         const textValue = document.querySelector('.count');
         textValue.textContent = y + " x " + y;
     }

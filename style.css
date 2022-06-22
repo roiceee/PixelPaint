@@ -236,7 +236,7 @@ button:active {
     width:100%;
     outline:none;
     height: 10px;
-    background: linear-gradient(to right, #ffc30f 10%, white 50%);
+    background: linear-gradient(to right, #ffda6a 30%, white 75%);
     -webkit-appearance: none;
     border-radius: 25px;
     margin-bottom: 8px;
